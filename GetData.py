@@ -2,10 +2,9 @@ from black import InvalidInput
 from Config import *
 from GetUrls import GetUrls
 
-class GetData(GetUrls, Variables):
+class GetData(GetUrls):
     def __init__(self, firstPageUrl):
         GetUrls.__init__(self, firstPageUrl)
-        Variables.__init__(self, firstPageUrl)
     
 
     def DataChoices(self):
@@ -257,7 +256,4 @@ class GetData(GetUrls, Variables):
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 
-    def AllInOne(self):
-        self.DataChoices()
-        # self.ChoicedLoop(self.GetNameMethod('td', 1))
-
+ 

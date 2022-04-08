@@ -1,10 +1,9 @@
 from Config import *
 from ReadHtml import ReadHtml
 
-class GetUrls(ReadHtml, Variables):
+class GetUrls(ReadHtml):
     def __init__(self, firstPageUrl):
         ReadHtml.__init__(self, firstPageUrl)
-        Variables.__init__(self, firstPageUrl)
         
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
@@ -54,6 +53,56 @@ class GetUrls(ReadHtml, Variables):
         
         
         return self.pagesUrls
+
+
+# /////////////////////////////////////NEW Method/////////////////////////////////////////////
+
+    def GetSubPagesUrlsFromXlsx(self, fileName, sheetName, row=0):
+
+        """
+        This method is used when we have a list in excel sheet of the subpages that 
+        contains the lists of organizations we want to scrap. It works on reading each row
+        of the excel sheet and append it to our local list of 'PagesUrls'.
+
+        The needed Arguments are as the following:
+            1- filename --> The name of the excel file without any additions.
+            2- sheetName --> 
+                - If you want to reach a specific sheet with a specific name
+                    you just have to write the 'sheet name' text with no additions
+                - If you want to get the current active sheet whatever it is, you 
+                    hust have to right 'active' instead of the sheet name.
+            3- row --> the column you want to get its data
+                - 0 (default) --> A
+                - 1 --> B 
+                - And so on.
+        """
+
+        self.cfBool = True
+
+        while self.cfBool:
+            try:
+                path = f'{pathlib.Path().resolve()}\\'
+                r_workbook = readWorkbook(f'{path}{fileName}.xlsx')
+                if (sheetName == 'active') or ('active' in sheetName):
+                    r_sheet = r_workbook.active
+                else:
+                    r_sheet = r_workbook[f'{sheetName}']
+                loopCounter = int(1)
+                try:
+                    for url in r_sheet:
+                        self.subpages.append(url[row])
+                except BaseException as error:
+                    print(error)
+                    print('Error Happened while writing the urls on urlsList | GetPagesUrlsFromXlsx Method ')
+
+            except BaseException as error:
+                print(error)
+                print ("Base Error happened while trying to get the pages Urls | GetPagesUrlsFromXlsx Method ")
+                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+        
+        
+        return self.subpages
+
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 
@@ -107,7 +156,7 @@ class GetUrls(ReadHtml, Variables):
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 
-    def GetSubPagesUrls(self, pagesUrls, hyperlinkKeyword, hyperlinkHeader, containerTag,  readingMode = 'html.parser' , urlTag = 'a'):
+    def GetSubPagesUrlsRGX(self, pagesUrls, hyperlinkKeyword, hyperlinkHeader, containerTag,  readingMode = 'html.parser' , urlTag = 'a'):
         
         """
         This method working in finding the subpges urls from the pages urls/htmls and append it in a list.

@@ -8,11 +8,16 @@ import pathlib
 
 
 class Variables():
+    
     def __init__(self, firstPageUrl):
+        # ReadHtml.__init__(self, firstPageUrl)
+        # GetUrls.__init__(self, firstPageUrl)
+        # GetData.__init__(self, firstPageUrl)
         self.EMAIL_REGEX = r"[\w\.-]+@[\w\.-]+"
         self.PHONE_REGEX = r"[\d]{2,4}-[\d]{2,4}-[\d]{2,4}"
         self.emailPattern = RGX.compile(self.EMAIL_REGEX)
         self.cfBool = True
+        self.filename = str()
         self.pureHtml = None
         self.textHtml = None
         self.parsedHtml = None

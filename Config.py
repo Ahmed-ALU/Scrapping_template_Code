@@ -4,7 +4,6 @@ from openpyxl import Workbook as writeWorkbook
 import re as RGX
 import requests as REQ
 from bs4 import BeautifulSoup as BS
-import pathlib
 
 
 class Variables():
@@ -17,6 +16,10 @@ class Variables():
         self.PHONE_REGEX = r"[\d]{2,4}-[\d]{2,4}-[\d]{2,4}"
         self.emailPattern = RGX.compile(self.EMAIL_REGEX)
         self.cfBool = True
+        self.tagsList = list()
+        self.row_list = list()
+        self.collective_list = list()
+        self.PIncrement = int(0)
         self.filename = str()
         self.pureHtml = None
         self.textHtml = None

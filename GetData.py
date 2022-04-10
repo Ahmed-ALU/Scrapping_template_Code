@@ -222,6 +222,8 @@ class GetData(GetUrls):
                     print(error)
                     print("Base Error Happened While getting the emails | GetEmailsByRGXMethod Method")
                     self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+            
+        return temp_list
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 

@@ -26,6 +26,8 @@ class Write(Variables):
             except BaseException as error:
                 print('Error while writing a row | writeFromListofLists Methode')
             print(f'Row N.{x} has been written')
+        
+        Book.save(f'{dest}{self.filename}')
         print('sheet has been written')
 
         return 
@@ -51,6 +53,9 @@ class Write(Variables):
             except BaseException as error:
                 print('Error while writing a row | writeFromListofStrings Methode')
             print(f'Row N.{x} has been written')
+        
+        Book.save(f'{dest}{self.filename}')
+        print('sheet has been written')
         print('sheet has been written')
 
         return 

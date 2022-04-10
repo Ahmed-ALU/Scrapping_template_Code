@@ -1,6 +1,6 @@
 from Config import *
 from ReadHtml import ReadHtml
-
+import pathlib
 class GetUrls(ReadHtml):
     def __init__(self, firstPageUrl):
         ReadHtml.__init__(self, firstPageUrl)
@@ -156,7 +156,59 @@ class GetUrls(ReadHtml):
 
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 
-    def GetSubPagesUrlsRGX(self, pagesUrls, hyperlinkKeyword, hyperlinkHeader, containerTag,  readingMode = 'html.parser' , urlTag = 'a'):
+    def GetPagsUrlsByIncrement(self, NofPages, IncrementAmount, PageUrl,  IncrementStart, afterUrl=''):
+
+        self.cfBool = True
+        
+        while self.cfBool:
+            try:
+                self.PIncrement = int(IncrementStart)
+                for p in range(IncrementStart, NofPages):
+                    print('Page adding')
+                    page = f'{PageUrl}{self.PIncrement}{afterUrl}'
+                    self.pagesUrls.append(page)
+                    print('Page added')
+                    self.PIncrement += IncrementAmount
+                    print(f'num = {self.PIncrement}')
+                    print()
+                self.cfBool = False
+                break
+            except BaseException as error:
+                print(error)
+                print ("Base Error happened while Creating pages Urls | GetPgsUrlsByIncrement Method ")
+                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+        
+        return self.pagesUrls   
+
+# /////////////////////////////////////NEW Method/////////////////////////////////////////////
+
+    def GetSubPagsUrlsByIncrement(self, NofPages, IncrementAmount, PageUrl, IncrementStart):
+
+        self.cfBool = True
+        
+        while self.cfBool:
+            try:
+                self.PIncrement = int(IncrementStart)
+                for p in range(NofPages):
+                    print('Page adding')
+                    page = f'{PageUrl}{self.PIncrement}'
+                    self.subpages.append(page)
+                    print('Page added')
+                    self.PIncrement += IncrementAmount
+                    print(f'num = {self.PIncrement}')
+                    print()
+                self.cfBool = False
+                break
+            except BaseException as error:
+                print(error)
+                print ("Base Error happened while Creating pages Urls | GetPgsUrlsByIncrement Method ")
+                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+        
+        return self.subpages  
+
+# /////////////////////////////////////NEW Method/////////////////////////////////////////////
+
+    def GetSubPagesUrlsRGXList(self, pagesUrls, hyperlinkKeyword, hyperlinkHeader, containerTag,  readingMode = 'html.parser' , urlTag = 'a'):
         
         """
         This method working in finding the subpges urls from the pages urls/htmls and append it in a list.
@@ -186,6 +238,8 @@ class GetUrls(ReadHtml):
                             if link not in self.subpages:
                                 secUrl = link.get('href')
                                 self.subpages.append(f'{hyperlinkHeader}{secUrl}')
+                                print(f'subpage added {len(self.subpages)}')
+                                print()
                         
                 self.cfBool = False
                 break

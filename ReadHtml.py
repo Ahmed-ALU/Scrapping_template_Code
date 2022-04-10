@@ -25,12 +25,14 @@ class ReadHtml(Variables):
             except (ConnectionAbortedError, ConnectionError) as error:
                 print(error)
                 print("Connection Error Happened While trying to connect to the website | ReadHml Method")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
             except BaseException as error:
                 print(error)
                 print("Base Error Happened While trying to connect to the website | ReadHml Method")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
-        
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
+
         # Return 
         return self.pureHtml
 
@@ -58,7 +60,8 @@ class ReadHtml(Variables):
             except BaseException as error:
                 print(error)
                 print ("Base Error happened while trying to convert the Pure HTML to text | htmlToText Method ")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
         # Return
         return self.textHtml
 
@@ -82,11 +85,13 @@ class ReadHtml(Variables):
             except (ConnectionAbortedError, ConnectionError) as error:
                 print(error)
                 print("Connection Error Happened While trying to connect to the website | DirectHtmlToTextOnline Method")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
             except BaseException as error:
                 print(error)
                 print("Base Error Happened While trying to connect to the website | DirectHtmlToTextOnline Method")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
         
         # Return
         return self.textHtml
@@ -107,7 +112,8 @@ class ReadHtml(Variables):
             except BaseException as error:
                 print(error)
                 print ("Base Error happened while trying to convert the Pure HTML to text | htmlParser Method ")
-                self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                # self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
+                self.cfBool = 0
         # Return
         return self.parsedHtml
 
@@ -137,6 +143,7 @@ class ReadHtml(Variables):
                 print(error)
                 print("Base Error Happened While trying to connect to the website | DirectHtmlToTextOnline Method")
                 self.cfBool = int(input("Please Enter 1 for Continuing the loop (Try again),\n or 0 for ending the loop and go on with the error: "))
-        
+                self.cfBool = 0
+
         # Return
         return self.parsedHtml

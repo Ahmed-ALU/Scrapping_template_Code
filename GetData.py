@@ -193,10 +193,11 @@ class GetData(GetUrls):
         return self.emailsList
 # /////////////////////////////////////NEW Method/////////////////////////////////////////////
 
-    def GetEmailByRGXMethod(self):
+    def GetEmailByRGXMethod(self, url):
         self.cfBool = True
         while self.cfBool:
             try:
+                self.DirectHtmlParser(url, 'html.parser')
                 temp_list = list()
                 for email in RGX.findall(self.EMAIL_REGEX, self.textHtml):
                     temp_list.append(email)

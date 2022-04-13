@@ -191,7 +191,7 @@ class GetUrls(ReadHtml):
                 self.PIncrement = int(IncrementStart)
                 for p in range(NofPages):
                     print('Page adding')
-                    page = f'{PageUrl}{self.PIncrement}'
+                    page = f'{PageUrl}/{self.PIncrement}'
                     self.subpages.append(page)
                     print('Page added')
                     self.PIncrement += IncrementAmount

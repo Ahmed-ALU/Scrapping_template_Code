@@ -16,6 +16,9 @@ class Variables():
         self.PHONE_REGEX = r"[\d]{2,4}-[\d]{2,4}-[\d]{2,4}"
         self.emailPattern = RGX.compile(self.EMAIL_REGEX)
         self.cfBool = True
+        self.emailsListofLists = list()
+        self.Categories = list()
+        self.subCategories = list()
         self.tagsList = list()
         self.row_list = list()
         self.collective_list = list()
